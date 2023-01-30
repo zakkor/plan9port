@@ -640,6 +640,12 @@ rpc_resizewindow(Client *c, Rectangle r)
 		[self sendmouse:b];
 	}else if(m & ~omod & NSEventModifierFlagOption)
 		gfx_keystroke(self.client, Kalt);
+	else if(m & ~omod & NSEventModifierFlagCommand)
+		gfx_keystroke(self.client, Kcmd);
+	else if(m & ~omod & NSEventModifierFlagControl)
+		gfx_keystroke(self.client, Kctl);
+	else if(m & ~omod & NSEventModifierFlagShift)
+		gfx_keystroke(self.client, Kshift);
 
 	omod = m;
 }
