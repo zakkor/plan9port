@@ -512,12 +512,12 @@ gfx_keystroke(Client *c, int ch)
 	int i;
 
 	qlock(&c->eventlk);
-	if(ch == Kalt){
-		c->kbd.alting = !c->kbd.alting;
-		c->kbd.nk = 0;
-		qunlock(&c->eventlk);
-		return;
-	}
+	// if(ch == Kalt){
+	// 	c->kbd.alting = !c->kbd.alting;
+	// 	c->kbd.nk = 0;
+	// 	qunlock(&c->eventlk);
+	// 	return;
+	// }
 	if(ch == Kcmd+'r') {
 		if(c->forcedpi)
 			c->forcedpi = 0;
