@@ -628,6 +628,19 @@ rpc_resizewindow(Client *c, Rectangle r)
 	LOG(@"flagsChanged");
 	m = [e modifierFlags];
 
+	if((m & NSEventModifierFlagOption) || (omod & NSEventModifierFlagOption)) {
+		gfx_keystroke(self.client, Kalt);
+	}
+	if((m & NSEventModifierFlagCommand) || (omod & NSEventModifierFlagCommand)) {
+		gfx_keystroke(self.client, Kcmd);
+	}
+	if((m & NSEventModifierFlagControl) || (omod & NSEventModifierFlagControl)) {
+		gfx_keystroke(self.client, Kctl);
+	}
+	if((m & NSEventModifierFlagShift) || (omod & NSEventModifierFlagShift)) {
+		gfx_keystroke(self.client, Kshift);
+	}
+	
 	b = [NSEvent pressedMouseButtons];
 	b = (b&~6) | (b&4)>>1 | (b&2)<<1;
 	if(b){
@@ -638,15 +651,7 @@ rpc_resizewindow(Client *c, Rectangle r)
 		if(m & ~omod & NSEventModifierFlagCommand)
 			b |= 4;
 		[self sendmouse:b];
-	}else if(m & ~omod & NSEventModifierFlagOption)
-		gfx_keystroke(self.client, Kalt);
-	else if(m & ~omod & NSEventModifierFlagCommand)
-		gfx_keystroke(self.client, Kcmd);
-	else if(m & ~omod & NSEventModifierFlagControl)
-		gfx_keystroke(self.client, Kctl);
-	else if(m & ~omod & NSEventModifierFlagShift)
-		gfx_keystroke(self.client, Kshift);
-
+	}
 	omod = m;
 }
 
