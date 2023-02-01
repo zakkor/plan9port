@@ -641,17 +641,17 @@ rpc_resizewindow(Client *c, Rectangle r)
 		gfx_keystroke(self.client, Kshift);
 	}
 	
-	b = [NSEvent pressedMouseButtons];
-	b = (b&~6) | (b&4)>>1 | (b&2)<<1;
-	if(b){
-		if(m & ~omod & NSEventModifierFlagControl)
-			b |= 1;
-		if(m & ~omod & NSEventModifierFlagOption)
-			b |= 2;
-		if(m & ~omod & NSEventModifierFlagCommand)
-			b |= 4;
-		[self sendmouse:b];
-	}
+	// b = [NSEvent pressedMouseButtons];
+	// b = (b&~6) | (b&4)>>1 | (b&2)<<1;
+	// if(b){
+	// 	if(m & ~omod & NSEventModifierFlagControl)
+	// 		b |= 1;
+	// 	if(m & ~omod & NSEventModifierFlagOption)
+	// 		b |= 2;
+	// 	if(m & ~omod & NSEventModifierFlagCommand)
+	// 		b |= 4;
+	// 	[self sendmouse:b];
+	// }
 	omod = m;
 }
 
@@ -704,15 +704,15 @@ rpc_resizewindow(Client *c, Rectangle r)
 	b = b&~6 | (b&4)>>1 | (b&2)<<1;
 	b = mouseswap(b);
 
-	if(b == 1){
-		m = [e modifierFlags];
-		if(m & NSEventModifierFlagOption){
-			gfx_abortcompose(self.client);
-			b = 2;
-		}else
-		if(m & NSEventModifierFlagCommand)
-			b = 4;
-	}
+	// if(b == 1){
+	// 	m = [e modifierFlags];
+	// 	if(m & NSEventModifierFlagOption){
+	// 		gfx_abortcompose(self.client);
+	// 		b = 2;
+	// 	}else
+	// 	if(m & NSEventModifierFlagCommand)
+	// 		b = 4;
+	// }
 	[self sendmouse:b];
 }
 
