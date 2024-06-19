@@ -628,16 +628,23 @@ rpc_resizewindow(Client *c, Rectangle r)
 	LOG(@"flagsChanged");
 	m = [e modifierFlags];
 
-	if((m & NSEventModifierFlagOption) || (omod & NSEventModifierFlagOption)) {
-		gfx_keystroke(self.client, Kalt);
-	}
-	if((m & NSEventModifierFlagCommand) || (omod & NSEventModifierFlagCommand)) {
+	// Check for Cmd key state change
+	if ((m & NSEventModifierFlagCommand) != (omod & NSEventModifierFlagCommand)) {
 		gfx_keystroke(self.client, Kcmd);
 	}
-	if((m & NSEventModifierFlagControl) || (omod & NSEventModifierFlagControl)) {
+
+	// Check for Option key state change
+	if ((m & NSEventModifierFlagOption) != (omod & NSEventModifierFlagOption)) {
+		gfx_keystroke(self.client, Kalt);
+	}
+
+	// Check for Control key state change
+	if ((m & NSEventModifierFlagControl) != (omod & NSEventModifierFlagControl)) {
 		gfx_keystroke(self.client, Kctl);
 	}
-	if((m & NSEventModifierFlagShift) || (omod & NSEventModifierFlagShift)) {
+
+	// Check for Shift key state change
+	if ((m & NSEventModifierFlagShift) != (omod & NSEventModifierFlagShift)) {
 		gfx_keystroke(self.client, Kshift);
 	}
 	
